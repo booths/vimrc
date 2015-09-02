@@ -75,6 +75,7 @@ Plugin 'plasticboy/vim-markdown'
 " file tree like something called IDE
 Plugin 'scrooloose/nerdtree'
 map <silent><F8> :NERDTree<CR>
+map <silent><F9> :NERDTreeClose<CR>
 " coffeescript
 Plugin 'kchmck/vim-coffee-script'
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
@@ -112,3 +113,17 @@ set t_Co=256
 " colorscheme molokai
 " clear trailing spaces when u save
 autocmd BufWritePre * :%s/\s\+$//e
+
+Plugin 'Shougo/neocomplete.vim'
+let g:neocomplete#enable_at_startup = 1
+:inoremap ( ((<Esc>i
+:inoremap { {{<Esc>i
+:inoremap [ [[<Esc>i
+:inoremap < <><Esc>i
+:inoremap " ""<Esc>i
+:inoremap ' ''<Esc>i
+map <left> <c-w>w
+map <right> <c-w>w
+nmap - :bp<cr>
+nmap = :bn<cr>
+nmap \ :vsp<cr>
