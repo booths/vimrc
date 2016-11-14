@@ -1,13 +1,4 @@
 set nocompatible               " be iMproved
-set encoding=utf8
-"filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Plugin manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
 
 " 1 tab to 2 space for ruby
 set tabstop=2
@@ -17,20 +8,36 @@ set expandtab
 " number line show
 set nu
 
-" input source improve for gui vim
-if has("gui_running")
-  set noimdisable
-  set imi=2
-  set ims=2
-endif
-
 set noswapfile
 "in order to switch between buffers with unsaved change
 set hidden
 
-" hightlight col and line
+" hightlight column and line
 set cursorline
 "set cursorcolumn
+filetype plugin indent on
+syntax on
+
+" support css word with -
+autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+
+" vim 7.4 backspace fix
+set backspace=indent,eol,start
+set t_Co=256
+" colorscheme, read here: http://vim.wikia.com/wiki/Change_the_color_scheme
+"colorscheme molokai
+autocmd BufWritePre * :%s/\s\+$//e
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-sensible'
+
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-dispatch'
 
 if has("gui_running")
   colorscheme desert
@@ -69,6 +76,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 map <silent><F7>  <leader>ig
 
 " markdown support
+let g:indent_guides_guide_size = 1
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
@@ -76,6 +84,10 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 map <silent><F8> :NERDTree<CR>
 map <silent><F9> :NERDTreeClose<CR>
+map <leader>r :NERDTreeFind<cr>
+map <leader>e :NERDTreeToggle<cr>
+map <leader>y "+y<cr>
+map <leader>p "+p<cr>
 " coffeescript
 Plugin 'kchmck/vim-coffee-script'
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
@@ -85,21 +97,20 @@ Plugin 'L9'
 Plugin 'slim-template/vim-slim.git'
 " hack filetype for slim
 autocmd BufNewFile,BufRead *.slim set filetype=slim
+autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 " quickly search file(s), use ctrl+p, F5 refresh
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn)|(optimized|compiled|node_modules)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Store|git|hg|svn)|(optimized|compiled|node_modules|bower_compenents)$'
 map <c-o> :CtrlPBuffer<CR>
-
-filetype plugin indent on     " required!
-syntax on
 
 " sass highlight
 Plugin 'JulesWang/css.vim'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'isRuslan/vim-es6'
 
 call vundle#end()
 " support css word with -
