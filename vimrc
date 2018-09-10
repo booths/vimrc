@@ -139,3 +139,4 @@ map <right> <c-w>w
 nmap - :bp<cr>
 nmap = :bn<cr>
 nmap \ :vsp<cr>
+set hlsearch
