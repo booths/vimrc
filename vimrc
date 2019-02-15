@@ -128,9 +128,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 Plugin 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
-:inoremap ( ((<Esc>i
-:inoremap { {{<Esc>i
-:inoremap [ [[<Esc>i
+:inoremap ( ()<Esc>i
+:inoremap { {}<Esc>i
+:inoremap [ []<Esc>i
 :inoremap < <><Esc>i
 :inoremap " ""<Esc>i
 :inoremap ' ''<Esc>i
